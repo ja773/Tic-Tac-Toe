@@ -33,16 +33,29 @@ def get_move():
     return coords
 
 def make_move(old_board, move_coord, player):
-    ''' Function to create an updated move with the input move'''
+    ''' 
+    Function to create an updated move with the input move
+    '''
     new_board = old_board
     new_board[move_coord[0]][move_coord[1]] = player
     return new_board
 
-board = new_board()
-move_coords_1 = (2, 0)
-board = make_move(board, move_coords_1, "X")
-render(board)
+def is_move_valid(board, move):
+    ''' Function to determine if a move is valid'''
+    if move[0] not in range(3) or move[1] not in range(3):
+        print('Error: The square is not inside the grid!')
+        return False
+    if board[move[0]][move[1]] is not None:
+        print('Error: This square is already taken!')
+        return False
+    return True
 
-move_coords_2 = (1, 1)
-board = make_move(board, move_coords_2, "O")
+board = new_board()
+
+move_coords = [2, 0]
+is_move_valid(board,move_coords)
+board = make_move(board, move_coords, "X")
+render(board)
+is_move_valid(board,move_coords)
+board = make_move(board, move_coords, "X")
 render(board)
