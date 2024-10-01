@@ -32,4 +32,17 @@ def get_move():
     coords[1] = int(input('Enter the y-coordinate of your move:'))
     return coords
 
-print(get_move())
+def make_move(old_board, move_coord, player):
+    ''' Function to create an updated move with the input move'''
+    new_board = old_board
+    new_board[move_coord[0]][move_coord[1]] = player
+    return new_board
+
+board = new_board()
+move_coords_1 = (2, 0)
+board = make_move(board, move_coords_1, "X")
+render(board)
+
+move_coords_2 = (1, 1)
+board = make_move(board, move_coords_2, "O")
+render(board)
