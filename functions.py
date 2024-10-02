@@ -89,7 +89,7 @@ def random_ai(board,player):
     poss_moves = []
     for i in range(3):
         for j in range(3):
-            if is_move_valid(board,[i,j]):
+            if is_move_valid_ai(board,[i,j]):
                 poss_moves.append([i,j])
     move = random.choice(poss_moves)
     return move
