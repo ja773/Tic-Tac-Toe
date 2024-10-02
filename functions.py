@@ -93,3 +93,16 @@ def random_ai(board,player):
                 poss_moves.append([i,j])
     move = random.choice(poss_moves)
     return move
+
+def find_winning_moves_ai(board,player):
+    ''' AI engine that plays a winning move if it exists or a random move'''
+    poss_moves = []
+    for i in range(3):
+        for j in range(3):
+            move_coords = [i,j]
+            if is_move_valid_ai(board,move_coords):
+                if get_winner(make_move(board,move_coords,player)) == player:
+                    return move_coords
+                poss_moves.append([i,j])
+    move = random.choice(poss_moves)
+    return move
