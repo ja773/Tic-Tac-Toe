@@ -49,6 +49,14 @@ def is_move_valid(board, move):
         return False
     return True
 
+def is_move_valid_ai(board, move):
+    ''' Function to determine if a move is valid for an AI input'''
+    if move[0] not in range(3) or move[1] not in range(3):
+        return False
+    if board[move[0]][move[1]] is not None:
+        return False
+    return True
+
 def get_winner(board):
     ''' Function to determine the winner given a board setup'''
     for row in board:
