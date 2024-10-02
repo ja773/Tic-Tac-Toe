@@ -46,3 +46,30 @@ def is_move_valid(board, move):
         print('Error: This square is already taken!')
         return False
     return True
+
+def get_winner(board):
+    ''' Function to determine the winner given a board setup'''
+    for row in board:
+        if row == ['X','X','X']:
+            return 'X'
+        if row == ['O','O','O']:
+            return 'O'
+    for c in range(3):
+        col = []
+        for r in range(3):
+            col.append(board[r][c])
+        if col == ['X','X','X']:
+            return 'X'
+        if col == ['O','O','O']:
+            return 'O'
+    diag1 = [board[i][i] for i in range(3)]
+    if diag1 == ['X','X','X']:
+        return 'X'
+    if diag1 == ['O','O','O']:
+        return 'O'
+    diag2 = [board[i][2-i] for i in range(3)]
+    if diag2 == ['X','X','X']:
+        return 'X'
+    if diag2 == ['O','O','O']:
+        return 'O'    
+    return False
