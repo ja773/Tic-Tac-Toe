@@ -1,4 +1,4 @@
-from main import new_board, make_move, is_move_valid, get_move, render, get_winner
+from functions import new_board, make_move, is_move_valid, get_move, render, get_winner
 
 # Starting the game with an empty board
 board = new_board()
