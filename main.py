@@ -1,6 +1,3 @@
-
-
-
 def new_board():
     ''' Function to initialise an empty board as a 2D list'''
     return [
@@ -49,13 +46,3 @@ def is_move_valid(board, move):
         print('Error: This square is already taken!')
         return False
     return True
-
-board = new_board()
-
-move_coords = [2, 0]
-is_move_valid(board,move_coords)
-board = make_move(board, move_coords, "X")
-render(board)
-is_move_valid(board,move_coords)
-board = make_move(board, move_coords, "X")
-render(board)
