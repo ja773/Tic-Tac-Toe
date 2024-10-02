@@ -1,3 +1,5 @@
+import random
+
 def new_board():
     ''' Function to initialise an empty board as a 2D list'''
     return [
@@ -73,3 +75,13 @@ def get_winner(board):
     if diag2 == ['O','O','O']:
         return 'O'    
     return False
+
+def random_ai(board,player):
+    ''' AI engine that plays random moves'''
+    poss_moves = []
+    for i in range(3):
+        for j in range(3):
+            if is_move_valid(board,[i,j]):
+                poss_moves.append([i,j])
+    move = random.choice(poss_moves)
+    return move
