@@ -25,13 +25,13 @@ def render(board):
 def get_move():
     ''' Function to convert a user input for a move to a co-ordinate list'''
     coords = [0,0]
-    coords[0] = int(input('Enter the x-coordinate of your move:'))
-    coords[1] = int(input('Enter the y-coordinate of your move:'))
+    coords[0] = int(input('Enter the row number of your move:'))
+    coords[1] = int(input('Enter the column number of your move:'))
     return coords
 
 def make_move(old_board, move_coord, player):
     ''' 
-    Function to create an updated move with the input move
+    Function to create an updated board with the input move
     '''
     new_board = old_board
     new_board[move_coord[0]][move_coord[1]] = player
