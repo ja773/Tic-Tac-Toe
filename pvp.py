@@ -2,9 +2,10 @@ from functions import new_board, make_move, is_move_valid, get_move, render, get
 
 # Starting the game with an empty board
 board = new_board()
-player1 = True          #to keep track of player
+player1 = True   # to keep track of player
 
-while not get_winner(board):
+moves = 0   # to keep track of number of moves played (<9) 
+while not get_winner(board) and moves < 9:
     render(board)
     if player1:
         print('Make a move for X')
@@ -18,7 +19,11 @@ while not get_winner(board):
     else:
         board = make_move(board, move_coords, 'O')
     player1 = not player1
+    moves += 1
 
 render(board)
-print('Winner is ',get_winner(board))
+if not get_winner(board):
+    print('This game was a draw')
+else:
+    print('Winner is ',get_winner(board))
 
