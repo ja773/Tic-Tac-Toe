@@ -140,3 +140,52 @@ def human_player(board,player):
     while not is_move_valid(board,coords):
         coords = human_player(board, coords)
     return coords
+
+def minimax_score(board,player):
+    ''' 
+    Function to calculate the minimax score for a given state to train the AI.
+    We assume the AI is X and opponent is O.
+    '''
+    if player == 'X':
+        ai = True
+        opp = 'O'
+    else:
+        ai = False
+        opp = 'X'
+    # Terminal states
+    if get_winner(board) == 'X':
+        return 10
+    if get_winner(board) == 'O':
+        return -10
+    players = 'OX'
+    squares = []
+    for i in range(3):
+        for j in range(3):
+            if board[i][j] in players:
+                squares.append(board[i][j])
+    if len(squares) == 9:
+        return 0
+    
+    # Obtain list of all possible legal moves
+    legal_moves = []
+    for i in range(3):
+        for j in range(3):
+            if is_move_valid_ai(board,[i,j]):
+                legal_moves.append([i,j])
+
+    # Iterate through legal moves
+    scores = []
+    for move in legal_moves:
+        test_board = make_move(board,move,player)
+        score = minimax_score(test_board,opp)
+        scores.append(score)
+
+    if ai:
+        return max(scores)
+    else:
+        return min(scores)
+    
+
+    
+
+
