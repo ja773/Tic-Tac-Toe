@@ -138,5 +138,5 @@ def human_player(board,player):
     coords[0] = int(input('Enter the row number of your move:'))
     coords[1] = int(input('Enter the column number of your move:'))
     while not is_move_valid(board,coords):
-        coords = get_move(board, coords)
+        coords = human_player(board, coords)
     return coords
