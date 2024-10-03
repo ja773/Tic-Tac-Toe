@@ -1,4 +1,4 @@
-import random
+import random, copy
 
 def new_board():
     ''' Function to initialise an empty board as a 2D list'''
@@ -35,7 +35,7 @@ def make_move(old_board, move_coord, player):
     ''' 
     Function to create an updated board with the input move
     '''
-    new_board = old_board
+    new_board = copy.deepcopy(old_board)
     new_board[move_coord[0]][move_coord[1]] = player
     return new_board
 
@@ -101,8 +101,10 @@ def find_winning_moves_ai(board,player):
         for j in range(3):
             move_coords = [i,j]
             if is_move_valid_ai(board,move_coords):
-                if get_winner(make_move(board,move_coords,player)) == player:
-                    return move_coords
-                poss_moves.append([i,j])
+                poss_moves.append(move_coords)
+    for k in range(len(poss_moves)):
+        new_board = make_move(board,poss_moves[k],player)
+        if get_winner(new_board) == player:
+            return poss_moves[k]
     move = random.choice(poss_moves)
     return move
