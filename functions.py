@@ -155,9 +155,9 @@ def minimax_score(board,curr_player,ai_player):
     else:
         opp = 'X'
     # Terminal states
-    if get_winner(board) == 'X':
+    if get_winner(board) == ai_player:
         return 10
-    if get_winner(board) == 'O':
+    if get_winner(board) is not None:
         return -10
     players = 'OX'
     squares = []
@@ -178,8 +178,8 @@ def minimax_score(board,curr_player,ai_player):
     # Iterate through legal moves
     scores = []
     for move in legal_moves:
-        test_board = make_move(board,move,player)
-        score = minimax_score(test_board,opp)
+        test_board = make_move(board,move,curr_player)
+        score = minimax_score(test_board,opp,ai_player)
         scores.append(score)
 
     if ai:
