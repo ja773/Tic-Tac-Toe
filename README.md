@@ -1,4 +1,4 @@
-# tic-tac-toe
+# Tic Tac Toe
 A simple command-line tic-tac-toe game.
 
 The game supports human input and AI engines.
