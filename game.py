@@ -1,7 +1,7 @@
 from functions import new_board, make_move, render, get_winner
 
 def play_game(p1,p2):
-    ''' Takes 2 interfaces as parameters and plays each other in a game '''
+    ''' Takes 2 interface classes as parameters and plays each other in a game '''
     # Starting the game with an empty board
     board = new_board()
     player1 = True   # to keep track of player
@@ -11,10 +11,10 @@ def play_game(p1,p2):
         render(board)
         if player1:
             player = 'X'
-            move_coords = p1(board, player)
+            move_coords = p1.make_move(board, player)
         else:
             player = 'O'
-            move_coords = p2(board, player)
+            move_coords = p2.make_move(board, player)
         if player1:
             board = make_move(board, move_coords, 'X')
         else:
