@@ -108,3 +108,26 @@ def find_winning_moves_ai(board,player):
             return poss_moves[k]
     move = random.choice(poss_moves)
     return move
+
+def find_winning_and_losing_moves_ai(board,player):
+    ''' AI engine that plays a winning move if it exists or blocks an opponent's winning move or a random move'''
+    poss_moves = []
+    if player == 'O':
+        opp = 'X'
+    else:
+        opp = 'O'
+    for i in range(3):
+        for j in range(3):
+            move_coords = [i,j]
+            if is_move_valid_ai(board,move_coords):
+                poss_moves.append(move_coords)
+    for k in range(len(poss_moves)):
+        new_board = make_move(board,poss_moves[k],player)
+        if get_winner(new_board) == player:
+            return poss_moves[k]
+    for l in range(len(poss_moves)):
+        new_board = make_move(board,poss_moves[l],opp)
+        if get_winner(new_board) == opp:
+            return poss_moves[l]
+    move = random.choice(poss_moves)
+    return move
