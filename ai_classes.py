@@ -1,4 +1,4 @@
-from functions import human_player, random_ai, find_winning_moves_ai, find_winning_and_losing_moves_ai
+from functions import human_player, random_ai, find_winning_moves_ai, find_winning_and_losing_moves_ai, minimax_ai
 
 # Base class for AI
 class TicTacToeAI:
@@ -20,6 +20,10 @@ class WinningAndLosingMoveAI(TicTacToeAI):
 class HumanPlayer(TicTacToeAI):
     def make_move(self, board, player):
         return human_player(board,player)
+    
+class MinimaxAI(TicTacToeAI):
+    def make_move(self, board, player):
+        return minimax_ai(board,player)    
 
 classMap = {
     'random_ai' : RandomAI,
