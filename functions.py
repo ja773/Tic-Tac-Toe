@@ -144,7 +144,6 @@ def human_player(board,player):
 def minimax_score(board,curr_player,ai_player):
     ''' 
     Function to calculate the minimax score for a given state to train the AI.
-    We assume the AI is X and opponent is O.
     '''
     if ai_player == 'X':
         opp_player = 'O'
