@@ -1,8 +1,10 @@
-from ai_classes import TicTacToeAI, HumanPlayer, RandomAI, WinningMoveAI, WinningAndLosingMoveAI, classMap
+from ai_classes import *
 from game import play_game
 import sys
 
 if __name__ == '__main__':
+    print('Available interfaces are',list(classMap.keys()))
+
     i1_name = input('Enter interface for player X: ')
 
     if i1_name not in classMap:

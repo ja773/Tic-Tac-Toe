@@ -1,4 +1,4 @@
-from functions import human_player, random_ai, find_winning_moves_ai, find_winning_and_losing_moves_ai, minimax_ai
+from functions import *
 
 # Base class for AI
 class TicTacToeAI:
@@ -29,5 +29,6 @@ classMap = {
     'random_ai' : RandomAI,
     'find_winning_moves_ai' : WinningMoveAI,
     'find_winning_and_losing_moves_ai' : WinningAndLosingMoveAI,
-    'human_player' : HumanPlayer
+    'human_player' : HumanPlayer,
+    'minimax_ai' : MinimaxAI
 }

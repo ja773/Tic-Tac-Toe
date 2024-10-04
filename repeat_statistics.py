@@ -1,7 +1,6 @@
-from functions import new_board, make_move, render, get_winner
-from functions import human_player, random_ai, find_winning_moves_ai, find_winning_and_losing_moves_ai
-from game import play_game, play_game_no_display
-from tictactoe import TicTacToeAI, HumanPlayer, RandomAI, WinningMoveAI, WinningAndLosingMoveAI, classMap
+from functions import *
+from game import *
+from ai_classes import *
 import sys
 
 def repeat_stats():
