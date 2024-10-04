@@ -146,6 +146,10 @@ def minimax_score(board,curr_player,ai_player):
     Function to calculate the minimax score for a given state to train the AI.
     We assume the AI is X and opponent is O.
     '''
+    if ai_player == 'X':
+        opp_player = 'O'
+    else:
+        opp_player = 'X'
     if curr_player == ai_player:
         ai = True
     else:
@@ -157,13 +161,12 @@ def minimax_score(board,curr_player,ai_player):
     # Terminal states
     if get_winner(board) == ai_player:
         return 10
-    if get_winner(board) is not None:
+    if get_winner(board) == opp_player:
         return -10
-    players = 'OX'
     squares = []
     for i in range(3):
         for j in range(3):
-            if board[i][j] in players:
+            if board[i][j]:
                 squares.append(board[i][j])
     if len(squares) == 9:
         return 0
@@ -201,10 +204,11 @@ def minimax_ai(board,player):
     for i in range(len(legal_moves)):
         test_board = make_move(board,legal_moves[i],player)
         scores.append(minimax_score(test_board,opp,player))
-    minmax = min(scores)
+    minmax = max(scores)
     for i in range(len(scores)):
         if scores[i] == minmax:
             return legal_moves[i]
+
     
 
     
