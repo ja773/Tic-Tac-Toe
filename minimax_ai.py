@@ -1,4 +1,4 @@
-from functions import new_board, make_move, is_move_valid_ai, render, get_winner, find_winning_and_losing_moves_ai
+from functions import new_board, make_move, is_move_valid_ai, render, get_winner, minimax_ai
 
 # Starting the game with an empty board
 board = new_board()
@@ -11,7 +11,7 @@ while not get_winner(board) and moves < 9:
         player = 'X'
     else:
         player = 'O'
-    move_coords = find_winning_and_losing_moves_ai(board, player)
+    move_coords = minimax_ai(board, player)
     if player1:
         board = make_move(board, move_coords, 'X')
     else:
