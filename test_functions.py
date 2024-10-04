@@ -1,9 +1,37 @@
 import pytest
-from io import StringIO
 from unittest.mock import patch
 
 # Import the functions you want to test
-from functions import new_board, render, get_move, make_move, is_move_valid, get_winner
+from functions import *
+
+# Sample board setups for testing
+@pytest.fixture
+def empty_board():
+    return new_board()
+
+@pytest.fixture
+def mid_game_board():
+    return [
+        ['X', 'O', 'X'],
+        ['O', None, None],
+        ['X', 'O', None]
+    ]
+
+@pytest.fixture
+def winning_board():
+    return [
+        ['X', 'X', 'X'],
+        ['O', 'O', None],
+        [None, None, 'O']
+    ]
+
+@pytest.fixture
+def almost_won_board():
+    return [
+        ['X', 'X', None],
+        ['O', None, None],
+        ['O', None, None]
+    ]
 
 
 def test_new_board():
@@ -94,3 +122,62 @@ def test_get_winner():
     assert get_winner(board2) == 'X'
     assert get_winner(board3) == 'X'
     assert get_winner(board4) == False
+
+def test_random_ai(empty_board):
+    player = 'X'
+    move = random_ai(empty_board, player)
+    assert isinstance(move, list), "random_ai should return a list"
+    assert len(move) == 2, "Move should be a coordinate with two values"
+    assert empty_board[move[0]][move[1]] is None, "random_ai should return a valid empty move"
+
+# Test find_winning_moves_ai function
+def test_find_winning_moves_ai(almost_won_board):
+    player = 'X'
+    move = find_winning_moves_ai(almost_won_board, player)
+    assert move == [0, 2], "AI should pick the winning move"
+
+def test_find_winning_moves_ai_no_winning_move(mid_game_board):
+    player = 'X'
+    move = find_winning_moves_ai(mid_game_board, player)
+    assert move in [[1, 1], [1, 2], [2, 2]], "AI should return any valid move if no winning move exists"
+
+# Test find_winning_and_losing_moves_ai function
+def test_find_winning_and_losing_moves_ai_winning(almost_won_board):
+    player = 'X'
+    move = find_winning_and_losing_moves_ai(almost_won_board, player)
+    assert move == [0, 2], "AI should play the winning move"
+
+def test_find_winning_and_losing_moves_ai_blocking(mid_game_board):
+    player = 'O'
+    move = find_winning_and_losing_moves_ai(mid_game_board, player)
+    assert move == [1, 1], "AI should block opponent's winning move"
+
+# Test minimax_score function
+def test_minimax_score_winning(winning_board):
+    player = 'X'
+    opp = 'O'
+    score = minimax_score(winning_board, opp, player)
+    assert score == 10, "minimax_score should return 10 for a winning board"
+
+def test_minimax_score_losing(winning_board):
+    player = 'O'
+    opp = 'X'
+    score = minimax_score(winning_board, player, player)
+    assert score == -10, "minimax_score should return -10 for a losing board"
+
+def test_minimax_score_draw(empty_board):
+    score = minimax_score(empty_board, 'X', 'X')
+    assert score == 0, "minimax_score should return 0 for a draw"
+
+# Test minimax_ai function
+def test_minimax_ai_optimal_move(almost_won_board):
+    player = 'X'
+    move = minimax_ai(almost_won_board, player)
+    assert move == [0, 2], "minimax_ai should pick the optimal move to win"
+
+def test_minimax_ai_random_move(mid_game_board):
+    player = 'O'
+    move = minimax_ai(mid_game_board, player)
+    assert move in [[1, 1], [1, 2], [2, 2]], "minimax_ai should pick an optimal move from available ones"
+
+# Skipping the human_player function test because it requires user input
