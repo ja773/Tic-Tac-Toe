@@ -8,12 +8,14 @@ So far, supported players are:
 - 'random_ai'
 - 'find_winning_moves_ai'
 - 'find_winning_and_losing_moves_ai'
+- 'minimax_ai' (the perfect player)
 
 To play with these engines, run:
-```python tictactoe.py <player 1> <player 2>```
+```python tictactoe.py```
+and answer the prompts given.
 
 This would start a game between the 2 players.
-The 2 players have to be one of the supported players to work.
+The 2 players have to be in the list of supported players to work.
 
 Additionally, you can compare how different AI engines play against each other and gather statistics by running:
 ```python random_statistics.py```
